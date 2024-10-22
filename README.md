@@ -1,9 +1,9 @@
 # Web-Repo
 
-#### 學生資料
+### 個人檔案
 
-###### 姓名：黃品嘉 學號：41171132H
+##### 姓名：黃品嘉 學號：41171132H
 
-###### HW1 [Resume](https://huangpinjia.github.io/Web-Repo/Resume%20Web/index.html)
+##### HW1 [Resume](https://huangpinjia.github.io/Web-Repo/Resume%20Web/index.html)
 
-###### HW2 [功能操作影片](https://youtu.be/QbCha1aavhQ)
+##### HW2 [功能操作影片](https://youtu.be/QbCha1aavhQ)
