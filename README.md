@@ -8,6 +8,10 @@
 
 ## 作業繳交區
 
-##### HW1 [Resume](https://huangpinjia.github.io/Web-Repo/Resume%20Web/index.html)
+#### 個人網站(HW1)
+- [Code](https://github.com/huangpinjia/Web-Repo/tree/main/Resume%20Web).
+- [Resume Website](https://huangpinjia.github.io/Web-Repo/Resume%20Web/index.html)
 
-##### HW2 [功能操作影片](https://youtu.be/QbCha1aavhQ)
+#### HW2
+- [Code](https://github.com/huangpinjia/Web-Repo/tree/main/hw2)
+- [功能操作Video](https://youtu.be/QbCha1aavhQ)
