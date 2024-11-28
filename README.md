@@ -17,6 +17,6 @@
 - [功能操作Video](https://youtu.be/QbCha1aavhQ)
 
 #### 期末專題
-- [專題提案](https://drive.google.com/file/d/1IcODrN3k1J_efAjO4pwo9h2IMExfLjuE/view?usp=drive_link)
+- [專題提案](https://drive.google.com/file/d/1IcODrN3k1J_efAjO4pwo9h2IMExfLjuE/view?usp=sharing)
 - [Vedio](https://youtu.be/4o8xPz4JjDc)
 
