@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Apps in HTML</title>
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <style>
+    /* General styles for the containers */
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    textarea, input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 20px;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    /* Button colors */
+    .translate-btn {
+      background-color: #007bff;
+    }
+    
+    .translate-btn:hover {
+      background-color: #0056b3;
+    }
+    
+    .convert-btn {
+      background-color: #28a745;
+    }
+    
+    .convert-btn:hover {
+      background-color: #218838;
+    }
+    
+    .invoice-btn {
+      background-color: #dc3545;
+    }
+    
+    .invoice-btn:hover {
+      background-color: #c82333;
+    }
+
+    /* Output styling */
+    .output, .total {
+      font-size: 18px;
+      color: #333;
+      margin-top: 15px;
+    }
+
+    /* Invoice items styling */
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    ul li {
+      font-size: 16px;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function LanguageTranslator() {
+      const [text, setText] = React.useState('');
+      const [translatedText, setTranslatedText] = React.useState('');
+
+      const handleTranslate = () => {
+        setTranslatedText(`Translated: ${text}`);
+      };
+
+      return (
+        <div className="container">
+          <h2>Language Translator</h2>
+          <textarea
+            placeholder="Enter text to translate..."
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          ></textarea>
+          <button className="translate-btn" onClick={handleTranslate}>Translate</button>
+          <div className="output">{translatedText}</div>
+        </div>
+      );
+    }
+
+    function CurrencyConverter() {
+      const [amount, setAmount] = React.useState('');
+      const [convertedAmount, setConvertedAmount] = React.useState('');
+
+      const handleConvert = () => {
+        setConvertedAmount(`Converted: ${amount * 1.2}`);
+      };
+
+      return (
+        <div className="container">
+          <h2>Currency Converter</h2>
+          <input
+            type="number"
+            placeholder="Enter amount"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+          />
+          <button className="convert-btn" onClick={handleConvert}>Convert</button>
+          <div className="output">{convertedAmount}</div>
+        </div>
+      );
+    }
+
+    function InvoiceGenerator() {
+      const [amount, setAmount] = React.useState('');
+      const [items, setItems] = React.useState([]);
+      const [total, setTotal] = React.useState(0);
+
+      const addItem = () => {
+        const price = parseFloat(amount);
+        if (!isNaN(price)) {
+          setItems([...items, { name: `Item ${items.length + 1}`, price }]);
+          setTotal(total + price);
+          setAmount('');
+        }
+      };
+
+      return (
+        <div className="container">
+          <h2>Invoice Generator</h2>
+          <input
+            type="number"
+            placeholder="Enter item price"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+          />
+          <button className="invoice-btn" onClick={addItem}>Add Item</button>
+          <ul>
+            {items.map((item, index) => (
+              <li key={index}>{item.name}: ${item.price.toFixed(2)}</li>
+            ))}
+          </ul>
+          <div className="total">Total: ${total.toFixed(2)}</div>
+        </div>
+      );
+    }
+
+    function App() {
+      return (
+        <div>
+          <LanguageTranslator />
+          <CurrencyConverter />
+          <InvoiceGenerator />
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
