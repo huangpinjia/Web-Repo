@@ -18,6 +18,6 @@
 
 #### HW3/期末專題
 - [專題提案](https://drive.google.com/file/d/1IcODrN3k1J_efAjO4pwo9h2IMExfLjuE/view?usp=sharing)
-- [提案彙報Vedio](https://youtu.be/C_QAkuu_xWE)
-- [Vedio](https://youtu.be/4o8xPz4JjDc)
+- [提案彙報Video](https://youtu.be/C_QAkuu_xWE)
+- [Video](https://youtu.be/4o8xPz4JjDc)
 
