@@ -16,8 +16,10 @@
 - [Code](https://github.com/huangpinjia/Web-Repo/tree/main/hw2)
 - [功能操作Video](https://youtu.be/QbCha1aavhQ)
 
-#### HW3/期末專題
+#### HW3
 - [專題提案](https://drive.google.com/file/d/1IcODrN3k1J_efAjO4pwo9h2IMExfLjuE/view?usp=sharing)
 - [提案彙報Video](https://youtu.be/C_QAkuu_xWE)
 - [Video](https://youtu.be/4o8xPz4JjDc)
+
+#### 期末專題
 
