@@ -21,6 +21,6 @@
 - [提案彙報Video](https://youtu.be/C_QAkuu_xWE)
 - [Video](https://youtu.be/4o8xPz4JjDc)
 
-#### 期末專題
+#### 期末專題_輕旅助手
 - [Code](https://github.com/huangpinjia/Web-Repo/tree/main/final-project)
 - [Website](https://qing-lu-zhu-shou.onrender.com)
