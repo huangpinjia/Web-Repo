@@ -1,0 +1,219 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Spendy</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+    <!-- 内嵌 Invoice Generator 样式 -->
+    <style>
+        /* Invoice Generator Styles */
+        .invoice-generator {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color:#312450;
+        }
+
+        .invoice-generator h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            color: rgb(232, 131, 23); /* Set text color to black */
+        }
+
+        .form button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .form button:hover {
+            background-color: #45a049;
+        }
+
+        .items {
+            margin-top: 20px;
+        }
+
+        .items ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .items li {
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .items h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .invoice-generator button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .invoice-generator button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<header id="header">
+    <a href="index.html" class="title">輕旅助手</a>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Verto.html" class="active">Verto</a></li>
+            <li><a href="MoneyMate.html" class="active">MoneyMate</a></li>
+            <li><a href="Spendy.html" class="active">Spendy</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Main -->
+    <section id="main" class="wrapper">
+        <div class="inner">
+            <h1 class="major">Spendy</h1>
+            <span class="image fit"><img src="images/pic006.png" alt="" /></span>
+            
+            <!-- Invoice Generator -->
+            <div id="invoice-generator"></div>  <!-- This is where React component will be injected -->
+        </div>
+    </section>
+
+</div>
+
+<!-- Footer -->
+
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+<!-- React and ReactDOM (if not bundled) -->
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+<!-- Babel (to transpile JSX) -->
+<script src="https://unpkg.com/@babel/standalone"></script>
+
+<!-- Your React Application -->
+<script type="text/babel">
+
+    const { useState } = React;
+    const Axios = window.Axios;
+
+    const InvoiceGenerator = () => {
+        const [items, setItems] = useState([]);
+        const [name, setName] = useState("");
+        const [amount, setAmount] = useState(0);
+        const [quantity, setQuantity] = useState(0);
+
+        const addItem = () => {
+            const newItem = { name, amount, quantity, total: amount * quantity };
+            setItems([...items, newItem]);
+            setName("");
+            setAmount(0);
+            setQuantity(0);
+        };
+
+        const saveToDatabase = () => {
+            items.forEach((item) => {
+                Axios.post("http://localhost:3001/api/save-item", item)
+                    .then((res) => {
+                        console.log(res.data.message);
+                    })
+                    .catch((err) => {
+                        console.error("Error saving item:", err);
+                    });
+            });
+            alert("Items saved successfully!");
+            setItems([]);
+        };
+
+        return (
+            <div className="invoice-generator">
+                <h1>Invoice Generator</h1>
+                <div className="form">
+                    <input
+                        type="text"
+                        placeholder="Item Name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                    <input
+                        type="number"
+                        placeholder="Amount"
+                        value={amount}
+                        onChange={(e) => setAmount(Number(e.target.value))}
+                    />
+                    <input
+                        type="number"
+                        placeholder="Quantity"
+                        value={quantity}
+                        onChange={(e) => setQuantity(Number(e.target.value))}
+                    />
+                    <button onClick={addItem}>Add</button>
+                </div>
+                <div className="items">
+                    <h2>Items</h2>
+                    <ul>
+                        {items.map((item, index) => (
+                            <li key={index}>
+                                {item.name} - {item.amount} x {item.quantity} = {item.total}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <button onClick={saveToDatabase}>Save</button>
+            </div>
+        );
+    };
+
+    ReactDOM.render(<InvoiceGenerator />, document.getElementById('invoice-generator'));
+
+</script>
+
+</body>
+</html>
